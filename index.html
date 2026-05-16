@@ -7,9 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@400;500&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --gold:#D4A017; --gold-light:#F5CC5A; --gold-dark:#9B7010;
-    --bg:#0D0A05; --bg2:#1A1408; --bg3:#241C0A;
-    --text:#F7E9C3; --text-dim:#8A7550; --green:#4CAF79; --red:#E05C5C;
+    --gold:#D4A017;--gold-light:#F5CC5A;--gold-dark:#9B7010;
+    --bg:#0D0A05;--bg2:#1A1408;--bg3:#241C0A;
+    --text:#F7E9C3;--text-dim:#8A7550;--green:#4CAF79;--red:#E05C5C;--orange:#F0923A;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   body{background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px 16px 80px;overflow-x:hidden;}
@@ -17,102 +17,122 @@
   .app{width:100%;max-width:420px;position:relative;z-index:1;}
 
   /* HEADER */
-  header{text-align:center;margin-bottom:22px;padding-top:10px;}
-  .logo-emoji{font-size:52px;display:block;margin-bottom:6px;filter:drop-shadow(0 0 18px rgba(212,160,23,0.6));animation:float 3s ease-in-out infinite;}
+  header{text-align:center;margin-bottom:20px;padding-top:8px;}
+  .logo-emoji{font-size:50px;display:block;margin-bottom:5px;filter:drop-shadow(0 0 18px rgba(212,160,23,0.6));animation:float 3s ease-in-out infinite;}
   @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-  header h1{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--gold-light);}
+  header h1{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:var(--gold-light);}
   header p{font-size:12px;color:var(--text-dim);margin-top:3px;font-family:'DM Mono',monospace;}
 
-  /* TIRELIRE */
-  .piggy-wrap{display:flex;justify-content:center;margin-bottom:20px;}
-  .piggy-container{width:155px;height:155px;position:relative;}
-  .piggy-bg{width:155px;height:155px;border-radius:50%;background:var(--bg3);border:2px solid var(--gold-dark);overflow:hidden;position:relative;box-shadow:0 0 32px rgba(212,160,23,0.15),inset 0 0 20px rgba(0,0,0,0.4);}
+  /* PIGGY */
+  .piggy-wrap{display:flex;justify-content:center;margin-bottom:16px;}
+  .piggy-container{width:148px;height:148px;position:relative;}
+  .piggy-bg{width:148px;height:148px;border-radius:50%;background:var(--bg3);border:2px solid var(--gold-dark);overflow:hidden;position:relative;box-shadow:0 0 32px rgba(212,160,23,0.15),inset 0 0 20px rgba(0,0,0,0.4);}
   .piggy-fill{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(180deg,var(--gold-light) 0%,var(--gold) 40%,var(--gold-dark) 100%);transition:height 1s cubic-bezier(0.34,1.56,0.64,1);border-radius:0 0 100px 100px;}
   .piggy-fill::after{content:'';position:absolute;top:0;left:0;right:0;height:8px;background:rgba(255,255,255,0.15);border-radius:50%;}
-  .piggy-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:62px;z-index:2;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.5));}
+  .piggy-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:58px;z-index:2;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.5));}
   .piggy-pct{position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);font-size:11px;font-weight:800;font-family:'DM Mono',monospace;padding:2px 10px;border-radius:20px;white-space:nowrap;}
 
-  /* PROGRESS */
-  .goal-card{background:var(--bg2);border:1px solid rgba(212,160,23,0.2);border-radius:20px;padding:18px 20px;margin-bottom:14px;position:relative;overflow:hidden;}
+  /* GOAL */
+  .goal-card{background:var(--bg2);border:1px solid rgba(212,160,23,0.2);border-radius:20px;padding:16px 18px;margin-bottom:12px;position:relative;overflow:hidden;}
   .goal-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
   .goal-row{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:10px;}
-  .goal-label{font-size:11px;color:var(--text-dim);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
-  .goal-val{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--gold-light);}
-  .goal-val.big{font-size:28px;}
+  .goal-col{}
+  .goal-label{font-size:10px;color:var(--text-dim);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
+  .goal-val{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold-light);}
+  .goal-val.big{font-size:24px;}
   .progress-bar{height:7px;background:var(--bg3);border-radius:10px;overflow:hidden;}
   .progress-fill{height:100%;background:linear-gradient(90deg,var(--gold-dark),var(--gold-light));border-radius:10px;transition:width 0.8s ease;position:relative;}
   .progress-fill::after{content:'';position:absolute;right:0;top:0;bottom:0;width:6px;background:white;border-radius:3px;opacity:0.6;}
 
-  /* RESTE */
-  .reste-badge{text-align:center;margin-bottom:16px;padding:10px 16px;background:var(--bg3);border-radius:14px;border:1px solid rgba(212,160,23,0.15);}
-  .reste-badge span{font-size:12px;color:var(--text-dim);font-family:'DM Mono',monospace;}
-  .reste-badge strong{font-family:'Playfair Display',serif;font-size:18px;color:var(--gold-light);display:block;margin-top:2px;}
+  /* STATS */
+  .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+  .stat-box{background:var(--bg2);border:1px solid rgba(212,160,23,0.15);border-radius:16px;padding:14px 12px;text-align:center;}
+  .stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--gold-light);line-height:1;}
+  .stat-label{font-size:10px;color:var(--text-dim);font-family:'DM Mono',monospace;margin-top:3px;letter-spacing:0.5px;}
+  .stat-box.red-box{border-color:rgba(224,92,92,0.3);}
+  .stat-box.red-box .stat-num{color:var(--red);}
+  .stat-box.green-box{border-color:rgba(76,175,121,0.3);}
+  .stat-box.green-box .stat-num{color:var(--green);}
 
-  /* ===== BILLETS ===== */
-  .billets-section{margin-bottom:16px;}
-  .billets-title{font-size:11px;color:var(--text-dim);font-family:'DM Mono',monospace;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:12px;}
-
-  .billets-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-
-  .billet-card{
-    background:linear-gradient(145deg,#1c1400,#251a00);
-    border:1.5px solid var(--gold-dark);
-    border-radius:16px;
-    padding:18px 10px 14px;
-    text-align:center;
-    cursor:pointer;
-    position:relative;
-    overflow:hidden;
-    transition:all 0.18s cubic-bezier(0.34,1.56,0.64,1);
-    user-select:none;
-    -webkit-tap-highlight-color:transparent;
+  /* ✨ SUGGESTION JOURNALIÈRE */
+  .suggest-card{
+    background:linear-gradient(135deg,#091408 0%,#0d1a09 100%);
+    border:1.5px solid rgba(76,175,121,0.35);
+    border-radius:20px;padding:16px 18px;margin-bottom:12px;
+    position:relative;overflow:hidden;
   }
-  .billet-card::before{
-    content:'';position:absolute;inset:0;
-    background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(212,160,23,0.08) 0%,transparent 70%);
-  }
-  .billet-card:hover{transform:translateY(-4px) scale(1.03);border-color:var(--gold);box-shadow:0 8px 28px rgba(212,160,23,0.22);}
-  .billet-card:active{transform:scale(0.96);border-color:var(--gold-light);}
+  .suggest-card::before{content:'💡 SUGGESTION DU JOUR';position:absolute;top:12px;left:50%;transform:translateX(-50%);font-size:9px;font-family:'DM Mono',monospace;letter-spacing:2px;color:rgba(76,175,121,0.6);white-space:nowrap;}
+  .suggest-inner{margin-top:22px;display:flex;align-items:center;justify-content:space-between;}
+  .suggest-left{}
+  .suggest-amount{font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:var(--green);line-height:1;animation:pulse-green 2s ease-in-out infinite;}
+  @keyframes pulse-green{0%,100%{text-shadow:0 0 15px rgba(76,175,121,0.3)}50%{text-shadow:0 0 30px rgba(76,175,121,0.7)}}
+  .suggest-da{font-size:14px;color:rgba(76,175,121,0.8);font-weight:800;letter-spacing:1px;margin-top:2px;}
+  .suggest-icon{font-size:42px;opacity:0.75;}
+  .suggest-note{font-size:12px;color:var(--text-dim);margin-top:8px;line-height:1.5;}
+  .suggest-note strong{color:var(--green);font-size:13px;}
 
-  .billet-dz{font-size:10px;color:var(--text-dim);font-family:'DM Mono',monospace;letter-spacing:1px;margin-bottom:6px;}
-  .billet-amount{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--gold-light);line-height:1;display:block;}
-  .billet-amount.mid{font-size:28px;}
-  .billet-da{font-size:11px;color:var(--gold);font-weight:800;letter-spacing:1px;margin-top:3px;}
-  .billet-plus{
-    position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
-    background:var(--gold-dark);color:var(--gold-light);
-    font-size:11px;font-weight:800;font-family:'DM Mono',monospace;
-    padding:2px 10px;border-radius:20px;white-space:nowrap;
-    opacity:0;transition:opacity 0.2s;
+  /* DEADLINE */
+  .deadline-card{
+    background:linear-gradient(135deg,#130800 0%,#1a0d00 100%);
+    border:1.5px solid rgba(240,146,58,0.35);
+    border-radius:20px;padding:14px 18px;margin-bottom:12px;
+    display:flex;align-items:center;gap:14px;
   }
+  .deadline-icon{font-size:32px;flex-shrink:0;}
+  .deadline-info{}
+  .deadline-label{font-size:10px;color:rgba(240,146,58,0.7);font-family:'DM Mono',monospace;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;}
+  .deadline-date{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--orange);}
+  .deadline-sub{font-size:11px;color:var(--text-dim);margin-top:2px;font-family:'DM Mono',monospace;}
+
+  /* BILLETS */
+  .section-title{font-size:10px;color:var(--text-dim);font-family:'DM Mono',monospace;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:10px;}
+  .billets-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px;}
+  .billet-card{background:linear-gradient(145deg,#1c1400,#251a00);border:1.5px solid var(--gold-dark);border-radius:16px;padding:16px 8px 12px;text-align:center;cursor:pointer;position:relative;overflow:hidden;transition:all 0.18s cubic-bezier(0.34,1.56,0.64,1);user-select:none;-webkit-tap-highlight-color:transparent;}
+  .billet-card:hover{transform:translateY(-4px) scale(1.04);border-color:var(--gold);box-shadow:0 8px 28px rgba(212,160,23,0.25);}
+  .billet-card:active{transform:scale(0.95);}
+  .billet-dz{font-size:9px;color:var(--text-dim);font-family:'DM Mono',monospace;letter-spacing:1px;margin-bottom:5px;}
+  .billet-amount{font-family:'Playfair Display',serif;font-size:30px;font-weight:900;color:var(--gold-light);line-height:1;display:block;}
+  .billet-amount.sm{font-size:26px;}
+  .billet-da{font-size:10px;color:var(--gold);font-weight:800;letter-spacing:1px;margin-top:3px;}
+  .billet-plus{position:absolute;bottom:7px;left:50%;transform:translateX(-50%);background:var(--gold-dark);color:var(--gold-light);font-size:10px;font-weight:800;font-family:'DM Mono',monospace;padding:2px 8px;border-radius:20px;white-space:nowrap;opacity:0;transition:opacity 0.2s;}
   .billet-card:hover .billet-plus{opacity:1;}
 
   /* HISTORIQUE */
-  .history-section{background:var(--bg2);border:1px solid rgba(212,160,23,0.15);border-radius:20px;padding:16px;margin-bottom:14px;}
-  .history-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
-  .history-title{font-size:11px;color:var(--text-dim);font-family:'DM Mono',monospace;letter-spacing:1.5px;text-transform:uppercase;}
-  .btn-clear-hist{background:transparent;border:1px solid rgba(224,92,92,0.25);border-radius:8px;padding:4px 10px;color:var(--red);font-size:11px;font-family:'Nunito',sans-serif;cursor:pointer;font-weight:700;}
-  .btn-clear-hist:hover{background:rgba(224,92,92,0.08);}
-  .history-list{max-height:200px;overflow-y:auto;padding-right:2px;}
+  .history-card{background:var(--bg2);border:1px solid rgba(212,160,23,0.15);border-radius:20px;padding:14px 16px;margin-bottom:12px;}
+  .history-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+  .history-title{font-size:10px;color:var(--text-dim);font-family:'DM Mono',monospace;letter-spacing:1.5px;text-transform:uppercase;}
+  .btn-clear{background:transparent;border:1px solid rgba(224,92,92,0.25);border-radius:8px;padding:4px 10px;color:var(--red);font-size:11px;font-family:'Nunito',sans-serif;cursor:pointer;font-weight:700;}
+  .btn-clear:hover{background:rgba(224,92,92,0.08);}
+  .history-list{max-height:180px;overflow-y:auto;padding-right:2px;}
   .history-list::-webkit-scrollbar{width:3px;}
   .history-list::-webkit-scrollbar-thumb{background:var(--gold-dark);border-radius:4px;}
-  .history-empty{text-align:center;padding:20px;color:var(--text-dim);font-size:13px;font-family:'DM Mono',monospace;}
-  .hist-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+  .history-empty{text-align:center;padding:18px;color:var(--text-dim);font-size:13px;font-family:'DM Mono',monospace;}
+  .hist-item{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
   .hist-item:last-child{border-bottom:none;}
-  .hist-left{display:flex;align-items:center;gap:10px;}
-  .hist-icon{font-size:16px;}
-  .hist-info{display:flex;flex-direction:column;}
+  .hist-left{display:flex;align-items:center;gap:9px;}
+  .hist-icon{font-size:15px;}
   .hist-amount{font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:var(--gold-light);}
   .hist-date{font-size:10px;color:var(--text-dim);font-family:'DM Mono',monospace;margin-top:1px;}
-  .hist-del{background:transparent;border:none;color:var(--text-dim);font-size:14px;cursor:pointer;padding:4px 6px;border-radius:6px;transition:color 0.2s;}
+  .hist-del{background:transparent;border:none;color:var(--text-dim);font-size:13px;cursor:pointer;padding:4px 6px;border-radius:6px;}
   .hist-del:hover{color:var(--red);}
 
-  /* NOTIF */
-  .btn-notif{width:100%;padding:12px;background:transparent;border:1px solid rgba(212,160,23,0.28);border-radius:14px;color:var(--gold);font-size:13px;font-weight:600;font-family:'Nunito',sans-serif;cursor:pointer;transition:all 0.2s;margin-bottom:14px;display:flex;align-items:center;justify-content:center;gap:8px;}
-  .btn-notif:hover{background:rgba(212,160,23,0.07);}
-  .ndot{width:8px;height:8px;border-radius:50%;background:var(--red);flex-shrink:0;}
-  .ndot.on{background:var(--green);animation:blink 1.5s ease-in-out infinite;}
-  @keyframes blink{0%,100%{opacity:1}50%{opacity:0.4}}
+  /* RAPPEL */
+  .notif-card{background:var(--bg2);border:1px solid rgba(212,160,23,0.15);border-radius:20px;padding:16px 18px;margin-bottom:12px;}
+  .notif-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+  .notif-title{font-size:13px;font-weight:700;color:var(--text);}
+  .notif-badge{font-size:10px;font-family:'DM Mono',monospace;padding:3px 10px;border-radius:20px;background:rgba(224,92,92,0.15);color:var(--red);border:1px solid rgba(224,92,92,0.3);}
+  .notif-badge.on{background:rgba(76,175,121,0.15);color:var(--green);border-color:rgba(76,175,121,0.3);}
+  .notif-time{font-family:'Playfair Display',serif;font-size:38px;font-weight:900;color:var(--gold-light);text-align:center;margin:8px 0;letter-spacing:2px;}
+  .notif-time span{font-size:18px;color:var(--gold);vertical-align:middle;}
+  .notif-desc{font-size:12px;color:var(--text-dim);text-align:center;margin-bottom:12px;line-height:1.5;}
+  .btn-notif{width:100%;padding:13px;border:none;border-radius:14px;font-size:14px;font-weight:800;font-family:'Nunito',sans-serif;cursor:pointer;transition:all 0.2s;}
+  .btn-notif.off{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);color:var(--bg);}
+  .btn-notif.on{background:rgba(224,92,92,0.15);border:1px solid rgba(224,92,92,0.3);color:var(--red);}
+  .btn-notif:hover{opacity:0.88;transform:translateY(-1px);}
+
+  /* TEST NOTIF */
+  .btn-test{width:100%;margin-top:8px;padding:11px;background:transparent;border:1px solid rgba(212,160,23,0.25);border-radius:12px;color:var(--gold);font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;}
+  .btn-test:hover{background:rgba(212,160,23,0.07);}
 
   /* SETTINGS */
   .settings-panel{background:var(--bg2);border:1px solid rgba(212,160,23,0.2);border-radius:20px;overflow:hidden;margin-bottom:14px;}
@@ -136,8 +156,24 @@
   /* TOAST */
   .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--bg3);border:1px solid var(--gold-dark);border-radius:14px;padding:12px 22px;font-size:13px;color:var(--text);box-shadow:0 8px 32px rgba(0,0,0,0.5);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);z-index:999;white-space:nowrap;max-width:90vw;text-align:center;}
   .toast.show{transform:translateX(-50%) translateY(0);}
+
+  /* COINS */
   .coin{position:fixed;pointer-events:none;font-size:22px;z-index:999;animation:cf 1.2s ease-in forwards;}
   @keyframes cf{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(220px) rotate(400deg);opacity:0}}
+
+  /* ALARM OVERLAY */
+  .alarm-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;}
+  .alarm-overlay.show{display:flex;}
+  .alarm-emoji{font-size:80px;animation:shake 0.5s ease-in-out infinite;}
+  @keyframes shake{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+  .alarm-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--gold-light);margin:20px 0 10px;}
+  .alarm-msg{font-size:16px;color:var(--text-dim);line-height:1.6;margin-bottom:8px;}
+  .alarm-amount{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--green);margin:10px 0;}
+  .alarm-da{font-size:16px;color:rgba(76,175,121,0.8);font-weight:800;}
+  .alarm-sub{font-size:13px;color:var(--text-dim);margin-top:6px;font-family:'DM Mono',monospace;}
+  .btn-dismiss{margin-top:28px;padding:16px 40px;background:var(--gold);color:var(--bg);border:none;border-radius:16px;font-size:16px;font-weight:900;font-family:'Nunito',sans-serif;cursor:pointer;}
+  .btn-dismiss:hover{opacity:0.85;}
+
   footer{text-align:center;font-size:11px;color:var(--text-dim);font-family:'DM Mono',monospace;padding-top:6px;}
 </style>
 </head>
@@ -150,7 +186,7 @@
     <p id="headerSub">Objectif · 500 000 DA</p>
   </header>
 
-  <!-- TIRELIRE -->
+  <!-- PIGGY -->
   <div class="piggy-wrap">
     <div class="piggy-container">
       <div class="piggy-bg"><div class="piggy-fill" id="piggyFill" style="height:0%"></div></div>
@@ -159,86 +195,110 @@
     </div>
   </div>
 
-  <!-- PROGRESS -->
+  <!-- GOAL -->
   <div class="goal-card">
     <div class="goal-row">
-      <div>
-        <div class="goal-label">Total épargné</div>
-        <div class="goal-val big" id="savedVal">0 DA</div>
-      </div>
-      <div style="text-align:right">
-        <div class="goal-label">Objectif</div>
-        <div class="goal-val" id="goalVal">500 000 DA</div>
-      </div>
+      <div class="goal-col"><div class="goal-label">Épargné</div><div class="goal-val big" id="savedVal">0 DA</div></div>
+      <div class="goal-col" style="text-align:right"><div class="goal-label">Objectif</div><div class="goal-val" id="goalVal">500 000 DA</div></div>
     </div>
     <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
   </div>
 
-  <!-- RESTE -->
-  <div class="reste-badge">
-    <span>Il te reste à épargner</span>
-    <strong id="resteVal">500 000 DA</strong>
+  <!-- STATS -->
+  <div class="stats-grid">
+    <div class="stat-box" id="joursBox">
+      <div class="stat-num" id="joursNum">—</div>
+      <div class="stat-label">Jours restants</div>
+    </div>
+    <div class="stat-box green-box">
+      <div class="stat-num" id="resteNum">—</div>
+      <div class="stat-label">DA restants</div>
+    </div>
+  </div>
+
+  <!-- SUGGESTION -->
+  <div class="suggest-card">
+    <div class="suggest-inner">
+      <div class="suggest-left">
+        <div class="suggest-amount" id="suggestAmount">—</div>
+        <div class="suggest-da">DA / JOUR</div>
+      </div>
+      <div class="suggest-icon">🎯</div>
+    </div>
+    <div class="suggest-note" id="suggestNote">Pour atteindre ton objectif, tu dois mettre de côté ce montant chaque jour.</div>
+  </div>
+
+  <!-- DEADLINE -->
+  <div class="deadline-card">
+    <div class="deadline-icon">📅</div>
+    <div class="deadline-info">
+      <div class="deadline-label">Date limite</div>
+      <div class="deadline-date" id="deadlineDate">—</div>
+      <div class="deadline-sub" id="deadlineSub">—</div>
+    </div>
   </div>
 
   <!-- BILLETS -->
-  <div class="billets-section">
-    <div class="billets-title">💸 Choisis ton billet à déposer</div>
-    <div class="billets-grid">
-
-      <div class="billet-card" onclick="deposer(500)">
-        <div class="billet-dz">DZ · ALGÉRIE</div>
-        <span class="billet-amount">500</span>
-        <div class="billet-da">DINARS</div>
-        <div class="billet-plus">+ 500 DA</div>
-      </div>
-
-      <div class="billet-card" onclick="deposer(1000)">
-        <div class="billet-dz">DZ · ALGÉRIE</div>
-        <span class="billet-amount mid">1 000</span>
-        <div class="billet-da">DINARS</div>
-        <div class="billet-plus">+ 1 000 DA</div>
-      </div>
-
-      <div class="billet-card" onclick="deposer(2000)">
-        <div class="billet-dz">DZ · ALGÉRIE</div>
-        <span class="billet-amount mid">2 000</span>
-        <div class="billet-da">DINARS</div>
-        <div class="billet-plus">+ 2 000 DA</div>
-      </div>
-
+  <div class="section-title">💸 Dépose un billet</div>
+  <div class="billets-grid">
+    <div class="billet-card" onclick="deposer(500)">
+      <div class="billet-dz">DZ · ALGÉRIE</div>
+      <span class="billet-amount">500</span>
+      <div class="billet-da">DINARS</div>
+      <div class="billet-plus">+ 500 DA</div>
+    </div>
+    <div class="billet-card" onclick="deposer(1000)">
+      <div class="billet-dz">DZ · ALGÉRIE</div>
+      <span class="billet-amount sm">1 000</span>
+      <div class="billet-da">DINARS</div>
+      <div class="billet-plus">+ 1 000 DA</div>
+    </div>
+    <div class="billet-card" onclick="deposer(2000)">
+      <div class="billet-dz">DZ · ALGÉRIE</div>
+      <span class="billet-amount sm">2 000</span>
+      <div class="billet-da">DINARS</div>
+      <div class="billet-plus">+ 2 000 DA</div>
     </div>
   </div>
 
   <!-- HISTORIQUE -->
-  <div class="history-section">
+  <div class="history-card">
     <div class="history-header">
-      <span class="history-title">📋 Historique des dépôts</span>
-      <button class="btn-clear-hist" onclick="clearHistory()">Tout effacer</button>
+      <span class="history-title">📋 Historique</span>
+      <button class="btn-clear" onclick="clearHistory()">Effacer</button>
     </div>
-    <div class="history-list" id="historyList">
-      <div class="history-empty">Aucun dépôt encore — appuie sur un billet ! 👆</div>
-    </div>
+    <div class="history-list" id="histList"><div class="history-empty">Aucun dépôt — appuie sur un billet 👆</div></div>
   </div>
 
-  <!-- NOTIF -->
-  <button class="btn-notif" onclick="toggleNotif()">
-    <span class="ndot" id="ndot"></span>
-    <span id="nlabel">Activer le rappel à 23:59</span>
-  </button>
+  <!-- RAPPEL FORT -->
+  <div class="notif-card">
+    <div class="notif-top">
+      <span class="notif-title">🔔 Rappel quotidien</span>
+      <span class="notif-badge" id="notifBadge">DÉSACTIVÉ</span>
+    </div>
+    <div class="notif-time">23<span>:</span>59</div>
+    <div class="notif-desc">Un rappel <strong>fort</strong> chaque soir à 23:59 — notification, vibration et alarme sonore si tu n'as pas encore déposé !</div>
+    <button class="btn-notif off" id="btnNotif" onclick="toggleNotif()">🔔 Activer le rappel fort</button>
+    <button class="btn-test" onclick="testAlarm()">🧪 Tester l'alarme maintenant</button>
+  </div>
 
   <!-- SETTINGS -->
   <div class="settings-panel">
     <button class="stoggle" onclick="toggleSettings()">
-      <span>⚙️ Changer l'objectif</span>
+      <span>⚙️ Changer objectif &amp; date limite</span>
       <span class="sarrow" id="sarrow">▼</span>
     </button>
     <div class="sbody" id="sbody">
       <div class="s-sec">
-        <div class="s-lbl">🎯 Nouvel objectif</div>
+        <div class="s-lbl">🎯 Objectif (DA)</div>
         <div class="irow">
           <input class="ifield" id="iGoal" type="number" placeholder="500000" min="1000">
           <span class="iunit">DA</span>
-          <button class="btn-apply" onclick="applyGoal()">Appliquer</button>
+        </div>
+        <div class="s-lbl">📅 Date limite</div>
+        <div class="irow">
+          <input class="ifield" id="iDate" type="date">
+          <button class="btn-apply" onclick="applySettings()">OK</button>
         </div>
       </div>
       <div class="s-sec">
@@ -250,147 +310,282 @@
 
   <footer>Chaque DA compte · Bonne épargne ! 💛</footer>
 </div>
+
+<!-- ALARM OVERLAY -->
+<div class="alarm-overlay" id="alarmOverlay">
+  <div class="alarm-emoji">🔔</div>
+  <div class="alarm-title">RAPPEL TIRELIRE !</div>
+  <div class="alarm-msg">Il est 23:59 — Tu n'as pas encore déposé aujourd'hui !</div>
+  <div class="alarm-amount" id="alarmAmount">—</div>
+  <div class="alarm-da">DA à déposer aujourd'hui</div>
+  <div class="alarm-sub" id="alarmSub">—</div>
+  <button class="btn-dismiss" onclick="dismissAlarm()">✅ J'ai compris !</button>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
-const K = { goal:'tl2_goal', hist:'tl2_hist', notif:'tl2_notif' };
+// ===== KEYS =====
+const K={goal:'tl3_goal',deadline:'tl3_deadline',hist:'tl3_hist',notif:'tl3_notif',start:'tl3_start'};
 
-function getGoal() { return parseInt(localStorage.getItem(K.goal)) || 500000; }
-function getHist() { try { return JSON.parse(localStorage.getItem(K.hist)||'[]'); } catch { return []; } }
-function saveHist(h){ localStorage.setItem(K.hist, JSON.stringify(h)); }
+// ===== STATE =====
+function getGoal(){return parseInt(localStorage.getItem(K.goal))||500000;}
+function getDeadline(){return localStorage.getItem(K.deadline)||getDefaultDeadline();}
+function getDefaultDeadline(){
+  const d=new Date(); d.setDate(d.getDate()+60);
+  return d.toISOString().split('T')[0];
+}
+function getHist(){try{return JSON.parse(localStorage.getItem(K.hist)||'[]');}catch{return[];}}
+function saveHist(h){localStorage.setItem(K.hist,JSON.stringify(h));}
+function getTotal(h){return h.reduce((a,e)=>a+e.amount,0);}
 
-function fDA(n){ return Math.round(n).toLocaleString('fr-DZ').replace(/,/g,' ') + ' DA'; }
+// First start
+if(!localStorage.getItem(K.start)){
+  localStorage.setItem(K.start,new Date().toISOString().split('T')[0]);
+  localStorage.setItem(K.deadline,getDefaultDeadline());
+}
 
-function getTotal(h){ return h.reduce((a,e)=>a+e.amount,0); }
+function fDA(n){return Math.round(n).toLocaleString('fr-DZ').replace(/,/g,' ')+' DA';}
+
+function getDaysLeft(){
+  const now=new Date(); now.setHours(0,0,0,0);
+  const dl=new Date(getDeadline()); dl.setHours(0,0,0,0);
+  return Math.max(Math.ceil((dl-now)/86400000),0);
+}
+
+function getSuggestion(){
+  const hist=getHist(), goal=getGoal(), total=getTotal(hist);
+  const reste=Math.max(goal-total,0);
+  const days=getDaysLeft();
+  if(days<=0||reste<=0) return 0;
+  return Math.ceil(reste/days);
+}
 
 // ===== RENDER =====
 function render(){
-  const goal = getGoal();
-  const hist = getHist();
-  const total = getTotal(hist);
-  const reste = Math.max(goal - total, 0);
-  const pct = Math.min(total/goal*100, 100).toFixed(1);
+  const goal=getGoal(), hist=getHist(), total=getTotal(hist);
+  const reste=Math.max(goal-total,0);
+  const pct=Math.min(total/goal*100,100).toFixed(1);
+  const daysLeft=getDaysLeft();
+  const suggestion=getSuggestion();
 
-  document.getElementById('headerSub').textContent = `Objectif · ${fDA(goal)}`;
-  document.getElementById('goalVal').textContent   = fDA(goal);
-  document.getElementById('savedVal').textContent  = fDA(total);
-  document.getElementById('resteVal').textContent  = reste > 0 ? fDA(reste) : '🎉 OBJECTIF ATTEINT !';
-  document.getElementById('progressFill').style.width = pct+'%';
-  document.getElementById('piggyFill').style.height   = pct+'%';
-  document.getElementById('piggyPct').textContent     = pct+'%';
-  document.getElementById('iGoal').value = goal;
+  // Header & goal
+  document.getElementById('headerSub').textContent=`Objectif · ${fDA(goal)}`;
+  document.getElementById('goalVal').textContent=fDA(goal);
+  document.getElementById('savedVal').textContent=fDA(total);
+  document.getElementById('progressFill').style.width=pct+'%';
+  document.getElementById('piggyFill').style.height=pct+'%';
+  document.getElementById('piggyPct').textContent=pct+'%';
 
+  // Jours restants
+  const joursBox=document.getElementById('joursBox');
+  document.getElementById('joursNum').textContent=daysLeft;
+  joursBox.className='stat-box'+(daysLeft<=7?' red-box':daysLeft<=15?' ':'');
+
+  // DA restants
+  document.getElementById('resteNum').textContent=reste>0?fDA(reste).replace(' DA',''):'✅';
+
+  // Suggestion
+  const suggestEl=document.getElementById('suggestAmount');
+  const suggestNote=document.getElementById('suggestNote');
+  if(reste<=0){
+    suggestEl.textContent='🎉';
+    suggestNote.textContent='Félicitations ! Tu as atteint ton objectif !';
+  } else if(daysLeft<=0){
+    suggestEl.textContent='⏰';
+    suggestNote.textContent='La date limite est dépassée. Change la date dans les paramètres.';
+  } else {
+    suggestEl.textContent=suggestion.toLocaleString('fr-DZ');
+    suggestNote.innerHTML=`Pour atteindre <strong style="color:var(--gold-light)">${fDA(goal)}</strong> en <strong style="color:var(--gold-light)">${daysLeft} jours</strong>, mets de côté ce montant chaque jour.`;
+  }
+
+  // Deadline
+  const dl=new Date(getDeadline());
+  const options={day:'numeric',month:'long',year:'numeric'};
+  document.getElementById('deadlineDate').textContent=dl.toLocaleDateString('fr-DZ',options);
+  document.getElementById('deadlineSub').textContent=daysLeft>0?`Il te reste ${daysLeft} jour${daysLeft>1?'s':''}`:'Date dépassée !';
+
+  // History
   renderHistory(hist);
 
-  const on = localStorage.getItem(K.notif)==='1';
-  document.getElementById('ndot').className  = 'ndot'+(on?' on':'');
-  document.getElementById('nlabel').textContent = on ? '🔔 Rappel 23:59 activé' : 'Activer le rappel à 23:59';
+  // Notif
+  const on=localStorage.getItem(K.notif)==='1';
+  document.getElementById('notifBadge').textContent=on?'ACTIVÉ':'DÉSACTIVÉ';
+  document.getElementById('notifBadge').className='notif-badge'+(on?' on':'');
+  document.getElementById('btnNotif').className='btn-notif'+(on?' on':' off');
+  document.getElementById('btnNotif').textContent=on?'🔕 Désactiver le rappel':'🔔 Activer le rappel fort';
+
+  // Settings inputs
+  document.getElementById('iGoal').value=goal;
+  document.getElementById('iDate').value=getDeadline();
 }
 
 function renderHistory(hist){
-  const el = document.getElementById('historyList');
-  if(!hist.length){
-    el.innerHTML='<div class="history-empty">Aucun dépôt encore — appuie sur un billet ! 👆</div>';
-    return;
-  }
-  // Show newest first
-  el.innerHTML = [...hist].reverse().map((e,ri)=>{
-    const i = hist.length - 1 - ri; // real index
-    const d = new Date(e.date);
-    const dateStr = d.toLocaleDateString('fr-DZ',{day:'2-digit',month:'short',year:'numeric'}) + ' · ' + d.toLocaleTimeString('fr-DZ',{hour:'2-digit',minute:'2-digit'});
-    const icon = e.amount===500?'💵':e.amount===1000?'💴':'💶';
+  const el=document.getElementById('histList');
+  if(!hist.length){el.innerHTML='<div class="history-empty">Aucun dépôt — appuie sur un billet 👆</div>';return;}
+  el.innerHTML=[...hist].reverse().map((e,ri)=>{
+    const i=hist.length-1-ri;
+    const d=new Date(e.date);
+    const ds=d.toLocaleDateString('fr-DZ',{day:'2-digit',month:'short'})+' · '+d.toLocaleTimeString('fr-DZ',{hour:'2-digit',minute:'2-digit'});
+    const icon=e.amount===500?'💵':e.amount===1000?'💴':'💶';
     return `<div class="hist-item">
       <div class="hist-left">
         <span class="hist-icon">${icon}</span>
-        <div class="hist-info">
-          <span class="hist-amount">+ ${fDA(e.amount)}</span>
-          <span class="hist-date">${dateStr}</span>
-        </div>
+        <div><div class="hist-amount">+ ${fDA(e.amount)}</div><div class="hist-date">${ds}</div></div>
       </div>
-      <button class="hist-del" onclick="deleteDeposit(${i})" title="Supprimer">✕</button>
+      <button class="hist-del" onclick="deleteDeposit(${i})">✕</button>
     </div>`;
   }).join('');
 }
 
 // ===== DÉPOSER =====
 function deposer(amount){
-  const hist = getHist();
-  hist.push({ amount, date: new Date().toISOString() });
+  const hist=getHist();
+  hist.push({amount,date:new Date().toISOString()});
   saveHist(hist);
   spawnCoins(amount);
   render();
-  showToast(`💰 +${fDA(amount)} ajouté à ta tirelire !`);
+  showToast(`💰 +${fDA(amount)} ajouté !`);
 }
 
 function deleteDeposit(idx){
-  const hist = getHist();
-  hist.splice(idx, 1);
-  saveHist(hist);
-  render();
+  const hist=getHist(); hist.splice(idx,1); saveHist(hist); render();
   showToast('🗑 Dépôt supprimé');
 }
 
 function clearHistory(){
-  if(!confirm('Effacer tout l\'historique des dépôts ?')) return;
-  saveHist([]);
-  render();
-  showToast('🔄 Historique effacé');
+  if(!confirm('Effacer tout l\'historique ?')) return;
+  saveHist([]); render(); showToast('🔄 Historique effacé');
 }
 
-// ===== GOAL =====
-function applyGoal(){
-  const g = parseInt(document.getElementById('iGoal').value);
-  if(!g||g<1000){ showToast('❌ Montant invalide !'); return; }
-  localStorage.setItem(K.goal, g);
-  render();
-  showToast(`✅ Objectif mis à jour : ${fDA(g)}`);
-}
-
-// ===== RESET =====
-function resetAll(){
-  if(!confirm('Tout réinitialiser ? Historique et objectif seront perdus.')) return;
-  Object.values(K).forEach(k=>localStorage.removeItem(k));
-  render();
-  showToast('🔄 Réinitialisé !');
-}
-
-// ===== SETTINGS TOGGLE =====
+// ===== SETTINGS =====
 function toggleSettings(){
-  const b=document.getElementById('sbody'), a=document.getElementById('sarrow');
+  const b=document.getElementById('sbody'),a=document.getElementById('sarrow');
   const open=b.classList.toggle('open'); a.classList.toggle('open',open);
 }
 
-// ===== NOTIFICATIONS =====
+function applySettings(){
+  const g=parseInt(document.getElementById('iGoal').value);
+  const d=document.getElementById('iDate').value;
+  if(!g||g<1000){showToast('❌ Objectif invalide !');return;}
+  if(!d){showToast('❌ Date invalide !');return;}
+  localStorage.setItem(K.goal,g);
+  localStorage.setItem(K.deadline,d);
+  render();
+  showToast(`✅ Mis à jour : ${fDA(g)}`);
+}
+
+function resetAll(){
+  if(!confirm('Tout réinitialiser ?')) return;
+  Object.values(K).forEach(k=>localStorage.removeItem(k));
+  localStorage.setItem(K.start,new Date().toISOString().split('T')[0]);
+  localStorage.setItem(K.deadline,getDefaultDeadline());
+  render(); showToast('🔄 Réinitialisé !');
+}
+
+// ===== 🔔 RAPPEL FORT =====
+let alarmTimeout=null;
+let audioCtx=null;
+
 async function toggleNotif(){
   const on=localStorage.getItem(K.notif)==='1';
-  if(on){ localStorage.setItem(K.notif,'0'); showToast('🔕 Rappel désactivé'); render(); return; }
-  if(!('Notification' in window)){ showToast('❌ Notifications non supportées'); return; }
+  if(on){
+    localStorage.setItem(K.notif,'0');
+    if(alarmTimeout){clearTimeout(alarmTimeout);alarmTimeout=null;}
+    showToast('🔕 Rappel désactivé'); render(); return;
+  }
+  if(!('Notification' in window)){showToast('❌ Notifications non supportées');return;}
   const p=await Notification.requestPermission();
-  if(p==='granted'){ localStorage.setItem(K.notif,'1'); scheduleNotif(); showToast('🔔 Rappel activé à 23:59 !'); render(); }
-  else showToast('❌ Permission refusée');
+  if(p==='granted'){
+    localStorage.setItem(K.notif,'1');
+    scheduleAlarm();
+    showToast('🔔 Rappel fort activé à 23:59 !');
+    render();
+  } else {
+    showToast('❌ Permission refusée — active les notifs dans Réglages');
+  }
 }
-function scheduleNotif(){
-  if(localStorage.getItem(K.notif)!=='1'||Notification.permission!=='granted') return;
-  const now=new Date(), t=new Date(); t.setHours(23,59,0,0);
+
+function scheduleAlarm(){
+  if(localStorage.getItem(K.notif)!=='1') return;
+  if(alarmTimeout){clearTimeout(alarmTimeout);alarmTimeout=null;}
+  const now=new Date(), t=new Date();
+  t.setHours(23,59,0,0);
   if(now>=t) t.setDate(t.getDate()+1);
-  setTimeout(()=>{
-    const hist=getHist(), goal=getGoal(), total=getTotal(hist), reste=goal-total;
-    if(reste>0) new Notification('🏺 Tirelire — Rappel !',{body:`Il te reste ${fDA(reste)} à épargner. Pense à déposer un billet ce soir !`});
-    scheduleNotif();
-  }, t-now);
+  const ms=t-now;
+  alarmTimeout=setTimeout(()=>{
+    fireAlarm();
+    setTimeout(scheduleAlarm, 60000); // reschedule next day
+  },ms);
+}
+
+function fireAlarm(){
+  const hist=getHist(), goal=getGoal(), total=getTotal(hist);
+  const reste=Math.max(goal-total,0);
+  const suggestion=getSuggestion();
+  const daysLeft=getDaysLeft();
+  if(reste<=0) return; // objectif atteint
+
+  // 1. Notification système
+  if(Notification.permission==='granted'){
+    new Notification('🚨 TIRELIRE — RAPPEL URGENT !',{
+      body:`⏰ Il est 23:59 ! Mets ${fDA(suggestion)} de côté ce soir ! Il te reste ${fDA(reste)} sur ${daysLeft} jours.`,
+      requireInteraction:true
+    });
+  }
+
+  // 2. Vibration
+  if('vibrate' in navigator){
+    navigator.vibrate([500,200,500,200,500,200,1000]);
+  }
+
+  // 3. Son d'alarme
+  playAlarmSound();
+
+  // 4. Overlay visuel
+  document.getElementById('alarmAmount').textContent=suggestion.toLocaleString('fr-DZ');
+  document.getElementById('alarmSub').textContent=`Il te reste ${fDA(reste)} à épargner sur ${daysLeft} jours`;
+  document.getElementById('alarmOverlay').classList.add('show');
+}
+
+function playAlarmSound(){
+  try{
+    audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+    const freqs=[880,1100,880,1100,880,1100];
+    freqs.forEach((freq,i)=>{
+      const osc=audioCtx.createOscillator();
+      const gain=audioCtx.createGain();
+      osc.connect(gain); gain.connect(audioCtx.destination);
+      osc.frequency.value=freq;
+      osc.type='square';
+      gain.gain.setValueAtTime(0,audioCtx.currentTime+i*0.3);
+      gain.gain.linearRampToValueAtTime(0.4,audioCtx.currentTime+i*0.3+0.05);
+      gain.gain.linearRampToValueAtTime(0,audioCtx.currentTime+i*0.3+0.25);
+      osc.start(audioCtx.currentTime+i*0.3);
+      osc.stop(audioCtx.currentTime+i*0.3+0.3);
+    });
+  } catch(e){console.log('Audio error:',e);}
+}
+
+function testAlarm(){
+  showToast('🧪 Test de l\'alarme...');
+  setTimeout(()=>fireAlarm(),500);
+}
+
+function dismissAlarm(){
+  document.getElementById('alarmOverlay').classList.remove('show');
+  if(audioCtx){try{audioCtx.close();}catch(e){}}
 }
 
 // ===== COINS =====
 function spawnCoins(amount){
-  const icons = amount===500?['💵','✨']:amount===1000?['💴','🌟']:['💶','💛','🪙'];
+  const icons=amount===500?['💵','✨']:amount===1000?['💴','🌟']:['💶','💛','🪙'];
   for(let i=0;i<10;i++){
     setTimeout(()=>{
       const el=document.createElement('div'); el.className='coin';
       el.textContent=icons[Math.floor(Math.random()*icons.length)];
-      el.style.left=(10+Math.random()*80)+'vw';
-      el.style.top='35vh';
-      document.body.appendChild(el);
-      setTimeout(()=>el.remove(),1300);
+      el.style.left=(10+Math.random()*80)+'vw'; el.style.top='35vh';
+      document.body.appendChild(el); setTimeout(()=>el.remove(),1300);
     },i*70);
   }
 }
@@ -408,7 +603,12 @@ window.addEventListener('load',()=>{
     const pct=Math.min(getTotal(getHist())/getGoal()*100,100).toFixed(1);
     document.getElementById('piggyFill').style.height=pct+'%';
   },300);
-  if(localStorage.getItem(K.notif)==='1'&&Notification.permission==='granted') scheduleNotif();
+  if(localStorage.getItem(K.notif)==='1') scheduleAlarm();
+});
+
+// Wake up alarm on visibility change (phone unlock)
+document.addEventListener('visibilitychange',()=>{
+  if(!document.hidden && localStorage.getItem(K.notif)==='1') scheduleAlarm();
 });
 </script>
 </body>
